@@ -59,7 +59,7 @@ for _, student in students_df.iterrows():
 
         if department in ['CSE', 'IT', 'AI_DS']:
             programming_score = base_score + np.random.normal(5, 5)
-            dsa_score = base_score + np.random.normal(5, 7)
+            dsa_score = base_score + np.random.normal(5, 5)
 
         else:
             programming_score = base_score + np.random.normal(0, 7)
