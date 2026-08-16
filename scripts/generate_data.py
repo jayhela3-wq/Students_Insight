@@ -36,12 +36,12 @@ for i in range(NUM_STUDENTS):
         age
     ])
 
-    students_df = pd.DataFrame(
-        students,
-        columns = [
-            "StudentID", "Name", "Gender", "Department", "AdmissionYear", "CurrentSemester", "Age"
-        ]
-    )
+students_df = pd.DataFrame(
+    students,
+    columns = [
+        "StudentID", "Name", "Gender", "Department", "AdmissionYear", "CurrentSemester", "Age"
+    ]
+)
 
 students_df.to_csv("data/students.csv", index=False)
 
@@ -97,6 +97,29 @@ academic_df.to_csv("data/academic_data.csv", index=False)
 
 print("academic_data.csv created")
 print(academic_df.head())
+
+attendance_data = []
+
+for _, row in academic_df.iterrows():
+    student_id = row["StudentID"]
+    semester = row["Semester"]
+    cgpa = row["CGPA"]
+
+    attendance = 45 + (cgpa*5) + np.random.normal(0, 8)
+
+    attendance = np.clip(attendance, 40, 100)
+
+    attendance_data.append([
+        student_id, semester, round(attendance, 2)
+    ])
+attendance_df = pd.DataFrame(
+    attendance_data,
+    columns = ["StudentID", "Semester", "AttendancePercentage"]
+)
+attendance_df.to_csv("data/attendance.csv", index=False)
+
+print("attendance.csv created")
+print(attendance_df.head())
 
 
 
