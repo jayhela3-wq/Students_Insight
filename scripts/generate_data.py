@@ -43,7 +43,7 @@ for i in range(NUM_STUDENTS):
         ]
     )
 
-students_df.to_csv("../data/students.csv", index=False)
+students_df.to_csv("data/students.csv", index=False)
 
 print("students.csv created")
 print(students_df.head())
