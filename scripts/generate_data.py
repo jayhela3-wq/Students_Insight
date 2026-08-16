@@ -47,3 +47,56 @@ students_df.to_csv("data/students.csv", index=False)
 
 print("students.csv created")
 print(students_df.head())
+
+academic_data = []
+
+for _, student in students_df.iterrows():
+    student_id = student["StudentID"]
+    department = student["Department"]
+
+    for semester in range(1, 5):
+        base_score = random.randint(70, 100)
+
+        if department in ['CSE', 'IT', 'AI_DS']:
+            programming_score = base_score + np.random.normal(5, 5)
+            dsa_score = base_score + np.random.normal(5, 7)
+
+        else:
+            programming_score = base_score + np.random.normal(0, 7)
+            dsa_score = base_score + np.random.normal(0, 7)
+
+            math_score = base_score + np.random.normal(0, 7)
+            project_score = base_score + np.random.normal(3, 6)
+
+            programming_score = np.clip(programming_score, 0, 100)
+            dsa_score = np.clip(dsa_score, 0, 100)
+            math_score = np.clip(math_score, 0, 100)
+            project_score = np.clip(project_score, 0, 100)
+
+            average_score = (math_score + programming_score + dsa_score + project_score)/4
+
+            cgpa = (average_score/10) + np.random.normal(0, 0.3)
+            cgpa = np.clip(cgpa, 4.0, 10.0)
+
+            academic_data.append([
+                student_id,
+                semester,
+                round(cgpa, 2),
+                round(math_score, 2),
+                round(programming_score, 2),
+                round(dsa_score, 2),
+                round(project_score, 2)
+            ])
+
+academic_df = pd.DataFrame(
+    academic_data,
+    columns = ["StudentID", "Semester", "CGPA", "MathScore", "ProgrammingScore", "DSAScore", 'ProjectScore']
+)
+
+academic_df.to_csv("data/academic_data.csv", index=False)
+
+print("academic_data.csv created")
+print(academic_df.head())
+
+
+
