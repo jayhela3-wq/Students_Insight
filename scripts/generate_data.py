@@ -55,7 +55,7 @@ for _, student in students_df.iterrows():
     department = student["Department"]
 
     for semester in range(1, 5):
-        base_score = random.randint(70, 100)
+        base_score = np.random.normal(70, 10)
 
         if department in ['CSE', 'IT', 'AI_DS']:
             programming_score = base_score + np.random.normal(5, 5)
