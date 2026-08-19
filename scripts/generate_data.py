@@ -248,7 +248,74 @@ print(placement_df.head())
 
 print("\nPlacement Distributions:")
 print(placement_df["PlacementStatus"].value_counts())
-     
+
+feedback_data = []
+
+positive_feedback = [
+    "The courses are well structured and helpful.",
+    "I am satisfied with the learning experience.",
+    "The faculty members are very supportive.",
+    "The placement training has been useful.",
+    "The practical sessions are excellent.",
+    "The academic resources are very helpful."
+]
+
+neutral_feedback = [
+    "The overall experience is average.",
+    "The courses are okay but could be improved.",
+    "The facilities are satisfactor.",
+    "The learning experience is neither good nor bad.",
+    "Some aspects of the program are useful."
+]
+
+negative_feedback = [
+    "The placment training needs serious improvement.",
+    "The workload is too high.",
+    "The faculty support could be better.",
+    "The practical sessions need complete overhaul.",
+    "The placement opportunities are not sufficient.",
+    "The academic resources need improvement."
+] 
+
+feedback_data =[]
+
+NUM_FEEDBACK = 5000
+
+for i in range(NUM_FEEDBACK):
+    student_id = random.choice(students_df["StudentID"].tolist())
+
+    feedback_type = random.choices(["Positive", "Neutral", "Negative"], weights=[0.60, 0.20, 0.20])[0]
+
+    if feedback_type == "Positive":
+        feedback_text = random.chocie(positive_feedback)
+        rating = random.randint(4, 5)
+
+    elif feedback_type == "Neutral":
+        feedback_text = random.choice(neutral_feedback)
+        rating = 3
+
+    else :
+        feedback_text = random.choice(negative_feedback)
+
+    feedback_date = faker.date_between(start_date = "-2y", end_date="today")
+
+    feedback_data.append([
+        f"FB{10001 + i}",
+        student_id,
+        feedback_date,
+        rating,
+        feedback_text
+    ])
+
+feedback_df = pd.DataFrame(
+    feedback_data,
+    columns = ["FeedbackID", "StudentID", "FeedbackDate", "Rating", "FeedbackText"] 
+)
+
+feedback_df.to_csv("data/feedback.csv", index=False)
+
+print("feedback.csv created")
+print(feedback_df.head())
 
 
 
