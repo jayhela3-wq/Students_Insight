@@ -23,7 +23,18 @@ print("\nRow Counts:")
 for name, df in datasets.items():
     print(f"{name}:{len(df)}")
 
-print("\n Null Values:")
+print("\nNull Values:")
 for name, df in datasets.items():
     print(f"\n{name}")
     print(df.isnull().sum())
+
+print("\nDuplicates:")
+for name, df in datasets.items():
+    print(f"{name}:{df.duplicated().sum()}")
+
+print("\nRange Checks:")
+print("Invalid Age:", ((students["Age"]<18) | (students["Age"]>25)).sum())
+print("Invalid CGPA:", ((academic["CGPA"]<4) | (academic["CGPA"]>10)).sum())
+print("Invalid Attendance:",((attendance["AttendancePercentage"]<40) | (attendance["AttendancePercentage"]>100)).sum())
+print("Invalid Skill Scores:", ((skills.iloc[:,1]<0) | (skills.iloc[:,1]>100)).sum())
+print("Invalid Ratings:", ((feedback["Rating"]<1) | (feedback["Rating"]>5)).sum())
