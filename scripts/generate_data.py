@@ -287,7 +287,7 @@ for i in range(NUM_FEEDBACK):
     feedback_type = random.choices(["Positive", "Neutral", "Negative"], weights=[0.60, 0.20, 0.20])[0]
 
     if feedback_type == "Positive":
-        feedback_text = random.chocie(positive_feedback)
+        feedback_text = random.choice(positive_feedback)
         rating = random.randint(4, 5)
 
     elif feedback_type == "Neutral":
