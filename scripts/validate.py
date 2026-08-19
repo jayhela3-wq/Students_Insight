@@ -38,3 +38,11 @@ print("Invalid CGPA:", ((academic["CGPA"]<4) | (academic["CGPA"]>10)).sum())
 print("Invalid Attendance:",((attendance["AttendancePercentage"]<40) | (attendance["AttendancePercentage"]>100)).sum())
 print("Invalid Skill Scores:", ((skills.iloc[:,1]<0) | (skills.iloc[:,1]>100)).sum())
 print("Invalid Ratings:", ((feedback["Rating"]<1) | (feedback["Rating"]>5)).sum())
+
+student_ids = set(students["StudentID"])
+print("\nForeign Key Check:")
+
+for name, df in datasets.items():
+    if "StudentID" in df.columns:
+        missing_ids = set(df["StudentID"]) - student_ids
+        print(f"{name}:{len(missing_ids)} invalid StudentIDs")
