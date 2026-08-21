@@ -22,3 +22,73 @@ students_df.to_sql(
 )
 
 print("Students data inserted successfully")
+
+academic_df = pd.read_csv("data/academic_data.csv") 
+print("\nAcademic Data")
+print(academic_df.head())
+
+academic_df.to_sql(
+    "academic_data",
+    con = engine,
+    if_exists = "append",
+    index = False
+)
+
+print("Academic data inserted successfully")
+
+attendance_df = pd.read_csv("data/attendance.csv")
+
+print("\nAttendance data:")
+print(attendance_df.head())
+
+attendance_df.to_sql(
+    "attendance",
+    con = engine,
+    if_exists = "append",
+    index = False
+)
+
+print("Attendance data inserted successfully")
+
+feedback_df = pd.read_csv("data/feedback.csv")
+
+print("\nFeedback data:")
+print(feedback_df.head())
+
+feedback_df.to_sql(
+    "feedback",
+    con = engine,
+    if_exists = "append",
+    index = False
+)
+
+print("Feedback data inserted")
+
+
+skills_df = pd.read_csv("data/skills.csv")
+
+print("Skills data:")
+print(skills_df.head())
+
+skills_df.to_sql(
+    "skills",
+    con = engine,
+    if_exists = "append",
+    index = False
+)
+
+print("Skills data inserted")
+
+placement_df = pd.read_csv("data/placement.csv")
+
+print("Placement data:")
+print(placement_df.head())
+
+placement_df.to_sql(
+    "placement",
+    con = engine,
+    if_exists = "append",
+    index = False
+)
+
+print("Placement data inserted")
