@@ -8,7 +8,7 @@ CurrentSemester INT,
 Age INT
 );
 
-CREATE TABLE academic_performance(
+CREATE TABLE academic_data(
 StudentID VARCHAR(20),
 Semester INT,
 CGPA DECIMAL(4, 2),
